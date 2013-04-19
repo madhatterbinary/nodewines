@@ -3,7 +3,7 @@ var express = require('express'),
     http = require('http'),
     wine = require('./routes/wines');
 
-var app = express();//
+var app = express();
 
 app.configure(function () {
     app.set('port', process.env.PORT || 3000);
