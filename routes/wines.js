@@ -6,7 +6,7 @@ var Server = mongo.Server,
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 db = new Db('winedb', server, {safe: true});
- console.log("FUCK2");
+ console.log("FUCK2" + db + server);
 db.open(function(err, db) {
     console.log("FUCK3");
     if(!err) {
