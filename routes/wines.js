@@ -46,7 +46,8 @@ exports.addWine = function(req, res) {
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('Success: ' + JSON.stringify(result[0]));
-                res.send(result[0]);
+                //res.send(result[0]);
+                res.send(wine);
             }
         });
     });
@@ -65,7 +66,7 @@ exports.updateWine = function(req, res) {
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('' + result + ' document(s) updated');
-                res.send(wine);
+                //res.send(wine);
             }
         });
     });
@@ -80,7 +81,7 @@ exports.deleteWine = function(req, res) {
                 res.send({'error':'An error has occurred - ' + err});
             } else {
                 console.log('' + result + ' document(s) deleted');
-                res.send(req.body);
+                //res.send(req.body);
             }
         });
     });
