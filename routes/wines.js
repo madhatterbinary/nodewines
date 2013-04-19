@@ -6,15 +6,18 @@ var Server = mongo.Server,
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 db = new Db('winedb', server, {safe: true});
- 
+ console.log("FUCK2");
 db.open(function(err, db) {
+    console.log("FUCK3");
     if(!err) {
+        console.log("FUCK4");
         console.log("Connected to 'winedb' database");
         db.collection('wines', {safe:true}, function(err, collection) {
             if (err) {
+                console.log("FUCK5");
                 console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
                 populateDB();
-                console.log("FUCK3");
+                
             }
         });
     }
