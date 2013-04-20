@@ -1,51 +1,51 @@
-// var mongo = require('mongodb');
+var mongo = require('mongodb');
 
-// var Server = mongo.Server,
-//     Db = mongo.Db,
-//     BSON = mongo.BSONPure;
+var Server = mongo.Server,
+    Db = mongo.Db,
+    BSON = mongo.BSONPure;
 
-// var server = new Server('localhost', 27017, {auto_reconnect: true});
-// db = new Db('winecellerdb', server);
+var server = new Server('localhost', 27017, {auto_reconnect: true});
+db = new Db('winecellerdb', server);
 
-// console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS ::::::::::::::::::::::::::::::::::::: " + server + db);
+console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS ::::::::::::::::::::::::::::::::::::: " + server + db);
 
-//   // Then you can authorize your self
-//   db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
-//     // On authorized result=true
-//     // Not authorized result=false
-//     if(result){
-//           console.log("Connected to 'winedb' database");
+  // Then you can authorize your self
+  db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
+    // On authorized result=true
+    // Not authorized result=false
+    if(result){
+          console.log("Connected to 'winedb' database");
           
-//     }else{
-//         console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-//     }
-//     // If authorized you can use the database in the db variable
-//   });
-// });
-
-
-var Db = require('mongodb').Db,
-    MongoClient = require('mongodb').MongoClient,
-    Server = require('mongodb').Server,
-    ReplSetServers = require('mongodb').ReplSetServers,
-    ObjectID = require('mongodb').ObjectID,
-    Binary = require('mongodb').Binary,
-    GridStore = require('mongodb').GridStore,
-    Code = require('mongodb').Code,
-    BSON = require('mongodb').pure().BSON,
-    assert = require('assert');
-
-// Connect using the connection string
-MongoClient.connect("mongodb://madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", {native_parser:true}, function(err, db) {
-  assert.equal(null, err);
-console.log(':::::::::::::::::::: ' + JSON.stringify(result[0]));
-  db.collection('wines').update({a:1}, {b:1}, {upsert:true}, function(err, result) {
-    assert.equal(null, err);
-    assert.equal(1, result);
-
-    db.close();
+    }else{
+        console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
+    }
+    // If authorized you can use the database in the db variable
   });
 });
+
+
+// var Db = require('mongodb').Db,
+//     MongoClient = require('mongodb').MongoClient,
+//     Server = require('mongodb').Server,
+//     ReplSetServers = require('mongodb').ReplSetServers,
+//     ObjectID = require('mongodb').ObjectID,
+//     Binary = require('mongodb').Binary,
+//     GridStore = require('mongodb').GridStore,
+//     Code = require('mongodb').Code,
+//     BSON = require('mongodb').pure().BSON,
+//     assert = require('assert');
+
+// // Connect using the connection string
+// MongoClient.connect("mongodb://madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", {native_parser:true}, function(err, db) {
+//   assert.equal(null, err);
+// console.log(':::::::::::::::::::: ' + JSON.stringify(result[0]));
+//   db.collection('wines').update({a:1}, {b:1}, {upsert:true}, function(err, result) {
+//     assert.equal(null, err);
+//     assert.equal(1, result);
+
+//     db.close();
+//   });
+// });
 
 
 ///////////////////////////////////////////////////////
