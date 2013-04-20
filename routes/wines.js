@@ -26,31 +26,24 @@
 
 var Db = require('mongodb').Db,
     MongoClient = require('mongodb').MongoClient,
-    Server = require('mongodb').Server;
+    Server = require('mongodb').Server,
+    ReplSetServers = require('mongodb').ReplSetServers,
+    ObjectID = require('mongodb').ObjectID,
+    Binary = require('mongodb').Binary,
+    GridStore = require('mongodb').GridStore,
+    Code = require('mongodb').Code,
+    BSON = require('mongodb').pure().BSON,
+    assert = require('assert');
 
-// Set up the connection to the local db
-var mongoclient = new MongoClient(new Server("localhost", 27017));
-///////////////////////////////////////
-console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS 111111111 ::::::::::::::::::::::::::::::::::::: " + mongoclient);
-// Listen for when the mongoclient is connected
-mongoclient.open(function(err, mongoclient) {
+// Connect using the connection string
+MongoClient.connect("mongodb://madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", {native_parser:true}, function(err, db) {
+  assert.equal(null, err);
+console.log('::::::::::::::::::::::::::::::::::::DBDBDBDBDBBDBDBDBDBDBDBDB:::::::::::::::::::: ' + db);
+  db.collection('wines').update({a:1}, {b:1}, {upsert:true}, function(err, result) {
+    assert.equal(null, err);
+    assert.equal(1, result);
 
-  // Then select a database
-  var db = mongoclient.db("winecellerdb");
-console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS 2 ::::::::::::::::::::::::::::::::::::: " + db);
-  // Then you can authorize your self
-  db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
-    // On authorized result=true
-    // Not authorized result=false
-    if(result){
-          console.log("Connected to 'winedb' database");
-          
-    }else{
-        console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-
-    }
-
-    // If authorized you can use the database in the db variable
+    db.close();
   });
 });
 
