@@ -37,9 +37,8 @@
 //   // Now you can use the database in the db variable
 //    console.log("Connected to 'winedb' database" + err + result);
 // });
-
-var MongoClient = require('mongodb').MongoClient
-  , Server = require('mongodb').Server;
+MongoClient = require('mongodb').MongoClient;
+Server = require('mongodb').Server;
 
 var mongoClient = new MongoClient(new Server('localhost', 27017));
 mongoClient.open(function(err, mongoClient) {
