@@ -36,7 +36,7 @@ var Db = require('mongodb').Db,
 var db = new Db('winedb', new Server('locahost', 27017));
 // Only run the rest of the code if we have a mongodb server with version >= 1.9.1
 db.open(function(err, db) {
-    console.log("FUCK3",err);
+    console.log("FUCK333333333333333333333",err);
 
         populateDB();
         
@@ -334,7 +334,7 @@ var populateDB = function() {
     }];
     db.admin().serverInfo(function(err, result){
 
-       console.log("FUCK 5555555555 " +err + result);
+       console.log("FUCK 55555444455555 " +err + result);
        var collection = db.collection('wines');
        collection.insert(wines, {safe:true}, function(err, result) {});
     }
