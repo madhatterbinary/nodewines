@@ -1,26 +1,56 @@
-var mongo = require('mongodb');
-console.log("FUCK1");
-var Server = mongo.Server,
-    Db = mongo.Db,
-    BSON = mongo.BSONPure;
+// var mongo = require('mongodb');
+// console.log("FUCK1");
+// var Server = mongo.Server,
+//     Db = mongo.Db,
+//     BSON = mongo.BSONPure;
 
-var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('winedb', server, {safe: true});
- console.log("FUCK2" + db + server);
-db.open(function(err, db) {
-    console.log("FUCK3",err);
-    if(!err) {
-        console.log("FUCK4");
-        console.log("Connected to 'winedb' database");
-        db.collection('wines', {safe:true}, function(err, collection) {
-            if (err) {
-                console.log("FUCK5");
-                console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-                populateDB();
+// var server = new Server('localhost', 27017, {auto_reconnect: true});
+// db = new Db('winedb', server, {safe: true});
+//  console.log("FUCK2" + db + server);
+// db.open(function(err, db) {
+//     console.log("FUCK3",err);
+//     if(!err) {
+//         console.log("FUCK4");
+//         console.log("Connected to 'winedb' database");
+//         db.collection('wines', {safe:true}, function(err, collection) {
+//             if (err) {
+//                 console.log("FUCK5");
+//                 console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
+//                 populateDB();
                 
-            }
-        });
-    }
+//             }
+//         });
+//     }
+// });
+var Db = require('mongodb').Db,
+    MongoClient = require('mongodb').MongoClient,
+    Server = require('mongodb').Server,
+    ReplSetServers = require('mongodb').ReplSetServers,
+    ObjectID = require('mongodb').ObjectID,
+    Binary = require('mongodb').Binary,
+    GridStore = require('mongodb').GridStore,
+    Code = require('mongodb').Code,
+    BSON = require('mongodb').pure().BSON,
+    assert = require('assert');
+
+var db = new Db('test', new Server('locahost', 27017));
+// Only run the rest of the code if we have a mongodb server with version >= 1.9.1
+db.admin().serverInfo(function(err, result){
+
+  // Ensure we are running at least MongoDB v1.9.1
+  if(parseInt((result.version.replace(/\./g, ''))) >= 191) {
+
+    // Create a collection
+    var collection = db.collection('wines');
+
+    // Add an unique index to title to force errors in the batch insert
+    collection.ensureIndex({title:1}, {unique:true}, function(err, indexName) {
+     populateDB();
+      
+    });
+  } else {
+    test.done();
+  }
 });
 
 exports.findById = function(req, res) {
@@ -314,8 +344,8 @@ var populateDB = function() {
         picture: "waterbrook.jpg"
     }];
 
-    db.collection('wines', function(err, collection) {
-        collection.insert(wines, {safe:true}, function(err, result) {});
+    // db.collection('wines', function(err, collection) {
+    //     collection.insert(wines, {safe:true}, function(err, result) {});
     });
 
 };
