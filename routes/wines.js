@@ -51,40 +51,68 @@
 //     assert = require('assert');
 
 // Connect using the connection string
-var mongoClient = require('mongodb').MongoClient;
-mongoClient.connect("mongodb://madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", {native_parser:true}, function(err, db) {
-  assert.equal(null, err);
+// var mongoClient = require('mongodb').MongoClient;
+// mongoClient.connect("mongodb://madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", {native_parser:true}, function(err, db) {
+//   assert.equal(null, err);
 
-  db.collection('wines').update({a:1}, {b:1}, {upsert:true}, function(err, result) {
-    assert.equal(null, err);
-    assert.equal(1, result);
-    console.log("Connected to 'winedb' database" + result);
-    db.close();
+//   db.collection('wines').update({a:1}, {b:1}, {upsert:true}, function(err, result) {
+//     assert.equal(null, err);
+//     assert.equal(1, result);
+//     console.log("Connected to 'winedb' database" + result);
+//     db.close();
+//   });
+// });
+////////////////////////////////////////
+var mongodb = require('mongodb')
+  , MongoClient = mongodb.MongoClient
+  , Server = mongodb.Server;
+
+var mongoclient = new MongoClient(new Server('localhost', 27017));
+
+mongoclient.open(function(err, mongoclient) {
+    // Then select a database
+  var db = mongoclient.db("winecellerdb");
+
+  // Then you can authorize your self
+  db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
+    // On authorized result=true
+    // Not authorized result=false
+    if(err){
+           console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
+          
+    }else{
+        console.log("Connected to 'winedb' database");
+       
+         //populateDB();
+    }
+
+    // If authorized you can use the database in the db variable
   });
-});
 
+  mongoclient.close();
+})
 
 ///////////////////////////////////////
 // Listen for when the mongoclient is connected
 // mongoclient.open(function(err, mongoclient) {
 
-//   // Then select a database
-//   var db = mongoclient.db("winecellerdb");
+  // // Then select a database
+  // var db = mongoclient.db("winecellerdb");
 
-//   // Then you can authorize your self
-//   db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
-//     // On authorized result=true
-//     // Not authorized result=false
-//     if(result){
-//           console.log("Connected to 'winedb' database");
+  // // Then you can authorize your self
+  // db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
+  //   // On authorized result=true
+  //   // Not authorized result=false
+  //   if(result){
+  //         console.log("Connected to 'winedb' database");
           
-//     }else{
-//         console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-//          populateDB();
-//     }
+  //   }else{
+  //       console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
+  //        populateDB();
+  //   }
 
-//     // If authorized you can use the database in the db variable
-//   });
+  //   // If authorized you can use the database in the db variable
+  // });
 // });
 
 
