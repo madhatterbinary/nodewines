@@ -37,18 +37,13 @@ var db = new Db('winedb', new Server('locahost', 27017));
 // Only run the rest of the code if we have a mongodb server with version >= 1.9.1
 db.open(function(err, db) {
     console.log("FUCK3",err);
-    if(!err) {
-        console.log("FUCK4");
-        console.log("Connected to 'winedb' database");
+
+        populateDB();
         db.collection('wines', {safe:true}, function(err, collection) {
-            if (err) {
                 console.log("FUCK5");
                 console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-                populateDB();
-                
-            }
+
         });
-    }
 });
 
 exports.findById = function(req, res) {
