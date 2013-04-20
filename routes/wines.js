@@ -9,19 +9,20 @@ db = new Db('winecellerdb', server);
 
 console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS ::::::::::::::::::::::::::::::::::::: " + server + db);
 
-db.open(function(err, db) {
+  // Then you can authorize your self
+  db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
+    // On authorized result=true
+    // Not authorized result=false
+    if(result){
+          console.log("Connected to 'winedb' database");
+          
+    }else{
+        console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
 
-
-     console.log("WHAT IS THIS: " + err + db);
-    if(!err) {
-        console.log("Connected to 'winedb' database");
-        db.collection('wines', {safe:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-                //populateDB();
-            }
-        });
     }
+
+    // If authorized you can use the database in the db variable
+  });
     db.close();
 });
 // var Db = require('mongodb').Db,
