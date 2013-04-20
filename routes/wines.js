@@ -1,38 +1,13 @@
-var mongo = require('mongodb');
+// var mongo = require('mongodb');
 
-var Server = mongo.Server,
-    Db = mongo.Db,
-    BSON = mongo.BSONPure;
+// var Server = mongo.Server,
+//     Db = mongo.Db,
+//     BSON = mongo.BSONPure;
 
-var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('winecellerdb', server);
+// var server = new Server('localhost', 27017, {auto_reconnect: true});
+// db = new Db('winecellerdb', server);
 
-console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS ::::::::::::::::::::::::::::::::::::: " + server + db);
-
-  // Then you can authorize your self
-  db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
-    // On authorized result=true
-    // Not authorized result=false
-    if(result){
-          console.log("Connected to 'winedb' database");
-          
-    }else{
-        console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-    }
-    // If authorized you can use the database in the db variable
-  });
-// var Db = require('mongodb').Db,
-//     MongoClient = require('mongodb').MongoClient,
-//     Server = require('mongodb').Server;
-
-// // Set up the connection to the local db
-// var mongoclient = new MongoClient(new Server("localhost", 27017));
-// ///////////////////////////////////////
-// // Listen for when the mongoclient is connected
-// mongoclient.open(function(err, mongoclient) {
-
-//   // Then select a database
-//   var db = mongoclient.db("winecellerdb");
+// console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS ::::::::::::::::::::::::::::::::::::: " + server + db);
 
 //   // Then you can authorize your self
 //   db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
@@ -43,12 +18,40 @@ console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS :::::::::::::::
           
 //     }else{
 //         console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-
 //     }
-
 //     // If authorized you can use the database in the db variable
 //   });
 // });
+
+
+var Db = require('mongodb').Db,
+    MongoClient = require('mongodb').MongoClient,
+    Server = require('mongodb').Server;
+
+// Set up the connection to the local db
+var mongoclient = new MongoClient(new Server("localhost", 27017));
+///////////////////////////////////////
+// Listen for when the mongoclient is connected
+mongoclient.open(function(err, mongoclient) {
+
+  // Then select a database
+  var db = mongoclient.db("winecellerdb");
+
+  // Then you can authorize your self
+  db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
+    // On authorized result=true
+    // Not authorized result=false
+    if(result){
+          console.log("Connected to 'winedb' database");
+          
+    }else{
+        console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
+
+    }
+
+    // If authorized you can use the database in the db variable
+  });
+});
 
 
 ///////////////////////////////////////////////////////
