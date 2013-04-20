@@ -38,7 +38,14 @@ var db = new Db('test', new Server('locahost', 27017));
 db.admin().serverInfo(function(err, result){
     // Create a collection
     var collection = db.collection('wines');
-    populateDB();
+   
+  //Add an unique index to title to force errors in the batch insert
+    collection.ensureIndex({title:1}, {unique:true}, function(err, indexName) {
+      console.log('the fffffffffucking error ' + err);
+     populateDB();
+
+    });
+ 
 });
 
 exports.findById = function(req, res) {
