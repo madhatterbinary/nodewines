@@ -39,11 +39,7 @@ db.open(function(err, db) {
     console.log("FUCK3",err);
 
         populateDB();
-        db.collection('wines', {safe:true}, function(err, collection) {
-                console.log("FUCK5");
-                console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-
-        });
+        
 });
 
 exports.findById = function(req, res) {
@@ -339,6 +335,7 @@ var populateDB = function() {
 
     db.collection('wines', function(err, collection) {
         collection.insert(wines, {safe:true}, function(err, result) {});
+         console.log("FUCK 5555555555 " +err + result);
     });
 
 };
