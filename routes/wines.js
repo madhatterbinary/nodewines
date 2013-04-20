@@ -31,12 +31,13 @@ var Db = require('mongodb').Db,
 // Set up the connection to the local db
 var mongoclient = new MongoClient(new Server("localhost", 27017));
 ///////////////////////////////////////
+console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS 1 ::::::::::::::::::::::::::::::::::::: " + mongoclient);
 // Listen for when the mongoclient is connected
 mongoclient.open(function(err, mongoclient) {
 
   // Then select a database
   var db = mongoclient.db("winecellerdb");
-
+console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS 2 ::::::::::::::::::::::::::::::::::::: " + db);
   // Then you can authorize your self
   db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
     // On authorized result=true
