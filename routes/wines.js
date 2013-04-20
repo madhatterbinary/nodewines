@@ -42,11 +42,12 @@ db.admin().serverInfo(function(err, result){
 
     // Create a collection
     var collection = db.collection('wines');
-
-    // Add an unique index to title to force errors in the batch insert
+   
+  //Add an unique index to title to force errors in the batch insert
     collection.ensureIndex({title:1}, {unique:true}, function(err, indexName) {
+     
      populateDB();
-      
+
     });
   } else {
     test.done();
