@@ -21,7 +21,6 @@ console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS :::::::::::::::
     }
     // If authorized you can use the database in the db variable
   });
-});
 // var Db = require('mongodb').Db,
 //     MongoClient = require('mongodb').MongoClient,
 //     Server = require('mongodb').Server;
