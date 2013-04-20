@@ -18,12 +18,9 @@ console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS :::::::::::::::
           
     }else{
         console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-
     }
-
     // If authorized you can use the database in the db variable
   });
-    db.close();
 });
 // var Db = require('mongodb').Db,
 //     MongoClient = require('mongodb').MongoClient,
