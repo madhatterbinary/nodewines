@@ -337,7 +337,7 @@ var populateDB = function() {
        console.log("FUCK 55555444455555 " + err + result);
        var collection = db.collection('wines');
        collection.insert(wines, {safe:true}, function(err, result) {});
-    }
+    
            
     });
 
