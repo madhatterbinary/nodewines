@@ -31,7 +31,7 @@ var Db = require('../lib/mongodb').Db
 var host = process.env['MONGO_NODE_DRIVER_HOST'] != null ? process.env['MONGO_NODE_DRIVER_HOST'] : 'localhost';
 var port = process.env['MONGO_NODE_DRIVER_PORT'] != null ? process.env['MONGO_NODE_DRIVER_PORT'] : Connection.DEFAULT_PORT;
 
-console.log("Connecting to " + host + ":" + port);
+console.log("Connecting toooooooooooooooooo111111111111111111111ooooooooooooooooooooooooooo " + host + ":" + port);
 
 var db = new Db('winedb', new Server('locahost', 27017));
 // Only run the rest of the code if we have a mongodb server with version >= 1.9.1
