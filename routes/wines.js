@@ -32,11 +32,24 @@
 
 
 //
-var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect("mongodb://madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", function(err, result) {
-  // Now you can use the database in the db variable
-   console.log("Connected to 'winedb' database" + err + result);
+// var MongoClient = require('mongodb').MongoClient;
+// MongoClient.connect("mongodb://madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", function(err, result) {
+//   // Now you can use the database in the db variable
+//    console.log("Connected to 'winedb' database" + err + result);
+// });
+
+var MongoClient = require('mongodb').MongoClient
+  , Server = require('mongodb').Server;
+
+var mongoClient = new MongoClient(new Server('localhost', 27017));
+mongoClient.open(function(err, mongoClient) {
+  var db1 = mongoClient.db("winecellardb");
+
+  console.log("Connected to 'winedb' database" + db1);
+  mongoClient.close();
 });
+
+
 ///////////////////////////////////////
 // Listen for when the mongoclient is connected
 // mongoclient.open(function(err, mongoclient) {
