@@ -33,19 +33,22 @@ var Db = require('mongodb').Db,
     BSON = require('mongodb').pure().BSON,
     assert = require('assert');
 
-var db = new Db('test', new Server('locahost', 27017));
+var db = new Db('winedb', new Server('locahost', 27017));
 // Only run the rest of the code if we have a mongodb server with version >= 1.9.1
-db.admin().serverInfo(function(err, result){
-    // Create a collection
-    var collection = db.collection('wines');
-   
-  //Add an unique index to title to force errors in the batch insert
-    collection.ensureIndex({title:1}, {unique:true}, function(err, indexName) {
-      console.log('the fffffffffucking error ' + err);
-     populateDB();
-
-    });
- 
+db.open(function(err, db) {
+    console.log("FUCK3",err);
+    if(!err) {
+        console.log("FUCK4");
+        console.log("Connected to 'winedb' database");
+        db.collection('wines', {safe:true}, function(err, collection) {
+            if (err) {
+                console.log("FUCK5");
+                console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
+                populateDB();
+                
+            }
+        });
+    }
 });
 
 exports.findById = function(req, res) {
