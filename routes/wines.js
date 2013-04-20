@@ -332,10 +332,13 @@ var populateDB = function() {
         description: "Legend has it the gods didn't share their ambrosia with mere mortals.  This merlot may be the closest we've ever come to a taste of heaven.",
         picture: "waterbrook.jpg"
     }];
+    db.admin().serverInfo(function(err, result){
 
-    db.collection('wines', function(err, collection) {
-        collection.insert(wines, {safe:true}, function(err, result) {});
-         console.log("FUCK 5555555555 " +err + result);
+       console.log("FUCK 5555555555 " +err + result);
+       var collection = db.collection('wines');
+       collection.insert(wines, {safe:true}, function(err, result) {});
+    }
+           
     });
 
 };
