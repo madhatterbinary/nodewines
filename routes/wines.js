@@ -28,29 +28,36 @@ var Db = require('mongodb').Db,
     Server = require('mongodb').Server;
 
 // Set up the connection to the local db
-var mongoclient = new MongoClient(new Server("localhost", 27017));
+//var mongoclient = new MongoClient(new Server("localhost", 27017));
+
+
+//var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect("mongodb://madhatterbinary:lupen333@localhost:27017/winecellerdb", function(err, result) {
+  // Now you can use the database in the db variable
+   console.log("Connected to 'winedb' database" + err + result);
+});
 ///////////////////////////////////////
 // Listen for when the mongoclient is connected
-mongoclient.open(function(err, mongoclient) {
+// mongoclient.open(function(err, mongoclient) {
 
-  // Then select a database
-  var db = mongoclient.db("winecellerdb");
+//   // Then select a database
+//   var db = mongoclient.db("winecellerdb");
 
-  // Then you can authorize your self
-  db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
-    // On authorized result=true
-    // Not authorized result=false
-    if(result){
-          console.log("Connected to 'winedb' database");
+//   // Then you can authorize your self
+//   db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
+//     // On authorized result=true
+//     // Not authorized result=false
+//     if(result){
+//           console.log("Connected to 'winedb' database");
           
-    }else{
-        console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-         populateDB();
-    }
+//     }else{
+//         console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
+//          populateDB();
+//     }
 
-    // If authorized you can use the database in the db variable
-  });
-});
+//     // If authorized you can use the database in the db variable
+//   });
+// });
 
 
 ///////////////////////////////////////////////////////
