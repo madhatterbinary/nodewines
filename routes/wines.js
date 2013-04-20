@@ -35,12 +35,13 @@ console.log("Connecting toooooooooooooooooo111111111111111111111oooooooooooooooo
 
 var db = new Db('winedb', new Server('locahost', 27017));
 // Only run the rest of the code if we have a mongodb server with version >= 1.9.1
-db.open(function(err, db) {
-    console.log("FUCK333333333333333333333",err);
+// db.open(function(err, db) {
+//     console.log("FUCK333333333333333333333",err);
 
-        populateDB();
+//       //  populateDB();
+      
         
-});
+// });
 
 exports.findById = function(req, res) {
     var id = req.params.id;
@@ -332,13 +333,11 @@ var populateDB = function() {
         description: "Legend has it the gods didn't share their ambrosia with mere mortals.  This merlot may be the closest we've ever come to a taste of heaven.",
         picture: "waterbrook.jpg"
     }];
-    db.admin().serverInfo(function(err, result){
-
-       console.log("FUCK 55555444455555 " + err + result);
-       var collection = db.collection('wines');
-       collection.insert(wines, {safe:true}, function(err, result) {});
+    // db.admin().serverInfo(function(err, result){
+    //    var collection = db.collection('wines');
+    //    collection.insert(wines, {safe:true}, function(err, result) {});
     
            
-    });
+    // });
 
 };
