@@ -23,9 +23,9 @@
 //         });
 //     }
 // });
-var Db = require('mongodb').Db,
-    MongoClient = require('mongodb').MongoClient,
-    Server = require('mongodb').Server;
+// var Db = require('mongodb').Db,
+    MongoClient = require('mongodb').MongoClient;
+    // Server = require('mongodb').Server;
 
 // Set up the connection to the local db
 //var mongoclient = new MongoClient(new Server("localhost", 27017));
