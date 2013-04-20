@@ -7,6 +7,8 @@ var Server = mongo.Server,
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 db = new Db('winedb', server);
 
+console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS ::::::::::::::::::::::::::::::::::::: " + server + db);
+
 db.open(function(err, db) {
      console.log("WHAT IS THIS: " + err + db);
     if(!err) {
