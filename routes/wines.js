@@ -1,27 +1,27 @@
-var mongo = require('mongodb');
+// var mongo = require('mongodb');
 
-var Server = mongo.Server,
-    Db = mongo.Db,
-    BSON = mongo.BSONPure;
+// var Server = mongo.Server,
+//     Db = mongo.Db,
+//     BSON = mongo.BSONPure;
 
-var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('winecellerdb', server);
+// var server = new Server('localhost', 27017, {auto_reconnect: true});
+// db = new Db('winecellerdb', server);
 
-console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS ::::::::::::::::::::::::::::::::::::: " + server + db);
+// console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS ::::::::::::::::::::::::::::::::::::: " + server + db);
 
-  // Then you can authorize your self
-  db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
-    // On authorized result=true
-    // Not authorized result=false
-    if(result){
-          console.log("Connected to 'winedb' database");
+//   // Then you can authorize your self
+//   db.authenticate('madhatterbinary', 'lupen333', function(err, result) {
+//     // On authorized result=true
+//     // Not authorized result=false
+//     if(result){
+//           console.log("Connected to 'winedb' database");
           
-    }else{
-        console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-    }
-    // If authorized you can use the database in the db variable
-  });
-});
+//     }else{
+//         console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
+//     }
+//     // If authorized you can use the database in the db variable
+//   });
+// });
 
 
 // var Db = require('mongodb').Db,
@@ -46,7 +46,42 @@ console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS :::::::::::::::
 //     db.close();
 //   });
 // });
+var connect = require( 'connect' );
+var mongo = require( 'mongodb' );
 
+var port = process.env.PORT || 27017;
+var mongoUri = process.env.MONGOLAB_URI;
+
+var database = null;
+var winesCollection = null;
+
+mongo.connect( mongoUri, {}, dbConnectCallback );
+
+connect.createServer(
+
+    require( 'connect-jsonrpc' )( contacts )
+).listen( port );
+
+function dbConnectCallback( error, db )
+{
+    database = db;
+
+    database.addListener( "error", handleError );
+
+    database.collection( "contacts", collectionCallback );
+
+    database.collection('wines', function(err, collection) {
+        console.log("The 'wines' collection doesn't exist. Creating it with sample data..." + collection);
+    });
+};
+function handleError( error )
+{
+    console.log( "Error connecting to MongoLab" );
+};
+function collectionCallback( error, collection )
+{
+    winesCollection = collection;
+};
 
 ///////////////////////////////////////////////////////
 exports.findById = function(req, res) {
