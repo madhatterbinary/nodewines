@@ -24,14 +24,15 @@
 //     }
 // });
 // var Db = require('mongodb').Db,
-    MongoClient = require('mongodb').MongoClient;
+   // MongoClient = require('mongodb').MongoClient;
     // Server = require('mongodb').Server;
 
 // Set up the connection to the local db
 //var mongoclient = new MongoClient(new Server("localhost", 27017));
 
 
-//var MongoClient = require('mongodb').MongoClient;
+//
+var MongoClient = require('mongodb').MongoClient;
 MongoClient.connect("mongodb://madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", function(err, result) {
   // Now you can use the database in the db variable
    console.log("Connected to 'winedb' database" + err + result);
