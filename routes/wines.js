@@ -37,15 +37,27 @@
 //   // Now you can use the database in the db variable
 //    console.log("Connected to 'winedb' database" + err + result);
 // });
-MongoClient = require('mongodb').MongoClient;
-Server = require('mongodb').Server;
+var Db = require('mongodb').Db,
+    MongoClient = require('mongodb').MongoClient,
+    Server = require('mongodb').Server,
+    ReplSetServers = require('mongodb').ReplSetServers,
+    ObjectID = require('mongodb').ObjectID,
+    Binary = require('mongodb').Binary,
+    GridStore = require('mongodb').GridStore,
+    Code = require('mongodb').Code,
+    BSON = require('mongodb').pure().BSON,
+    assert = require('assert');
 
-var mongoClient = new MongoClient(new Server('localhost', 27017));
-mongoClient.open(function(err, mongoClient) {
-  var db1 = mongoClient.db("winecellardb");
+// Connect using the connection string
+MongoClient.connect("madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", {native_parser:true}, function(err, db) {
+  assert.equal(null, err);
 
-  console.log("Connected to 'winedb' database" + db1);
-  mongoClient.close();
+  db.collection('wines').update({a:1}, {b:1}, {upsert:true}, function(err, result) {
+    assert.equal(null, err);
+    assert.equal(1, result);
+    console.log("Connected to 'winedb' database" + result);
+    db.close();
+  });
 });
 
 
