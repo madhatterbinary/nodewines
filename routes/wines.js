@@ -38,7 +38,7 @@ var Db = require('mongodb').Db,
 // Connect using the connection string
 MongoClient.connect("mongodb://madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", {native_parser:true}, function(err, db) {
   assert.equal(null, err);
-console.log('::::::::::::::::::::::::::::::::::::DBDBDBDBDBBDBDBDBDBDBDBDB:::::::::::::::::::: ' + db);
+console.log(':::::::::::::::::::: ' + JSON.stringify(result[0]));
   db.collection('wines').update({a:1}, {b:1}, {upsert:true}, function(err, result) {
     assert.equal(null, err);
     assert.equal(1, result);
