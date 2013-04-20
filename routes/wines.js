@@ -36,10 +36,6 @@ var Db = require('mongodb').Db,
 var db = new Db('test', new Server('locahost', 27017));
 // Only run the rest of the code if we have a mongodb server with version >= 1.9.1
 db.admin().serverInfo(function(err, result){
-
-  // Ensure we are running at least MongoDB v1.9.1
-  if(parseInt((result.version.replace(/\./g, ''))) >= 191) {
-
     // Create a collection
     var collection = db.collection('wines');
    
@@ -49,9 +45,7 @@ db.admin().serverInfo(function(err, result){
      populateDB();
 
     });
-  } else {
-    test.done();
-  }
+ 
 });
 
 exports.findById = function(req, res) {
