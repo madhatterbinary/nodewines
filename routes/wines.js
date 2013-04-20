@@ -344,8 +344,8 @@ var populateDB = function() {
         picture: "waterbrook.jpg"
     }];
 
-    // db.collection('wines', function(err, collection) {
-    //     collection.insert(wines, {safe:true}, function(err, result) {});
+    db.collection('wines', function(err, collection) {
+        collection.insert(wines, {safe:true}, function(err, result) {});
     });
 
 };
