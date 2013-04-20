@@ -22,16 +22,16 @@
 //         });
 //     }
 // });
-var Db = require('mongodb').Db,
-    MongoClient = require('mongodb').MongoClient,
-    Server = require('mongodb').Server,
-    ReplSetServers = require('mongodb').ReplSetServers,
-    ObjectID = require('mongodb').ObjectID,
-    Binary = require('mongodb').Binary,
-    GridStore = require('mongodb').GridStore,
-    Code = require('mongodb').Code,
-    BSON = require('mongodb').pure().BSON,
-    assert = require('assert');
+var Db = require('../lib/mongodb').Db
+  , Connection = require('../lib/mongodb').Connection
+  , Server = require('../lib/mongodb').Server
+  , BSON = require('../lib/mongodb').BSONPure
+  , format = require('util').format;
+
+var host = process.env['MONGO_NODE_DRIVER_HOST'] != null ? process.env['MONGO_NODE_DRIVER_HOST'] : 'localhost';
+var port = process.env['MONGO_NODE_DRIVER_PORT'] != null ? process.env['MONGO_NODE_DRIVER_PORT'] : Connection.DEFAULT_PORT;
+
+console.log("Connecting to " + host + ":" + port);
 
 var db = new Db('winedb', new Server('locahost', 27017));
 // Only run the rest of the code if we have a mongodb server with version >= 1.9.1
@@ -334,7 +334,7 @@ var populateDB = function() {
     }];
     db.admin().serverInfo(function(err, result){
 
-       console.log("FUCK 55555444455555 " +err + result);
+       console.log("FUCK 55555444455555 " + err + result);
        var collection = db.collection('wines');
        collection.insert(wines, {safe:true}, function(err, result) {});
     }
