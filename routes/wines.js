@@ -32,7 +32,7 @@ var Db = require('mongodb').Db,
 
 
 //var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect("mongodb://madhatterbinary:lupen333@localhost:27017/winecellerdb", function(err, result) {
+MongoClient.connect("mongodb://madhatterbinary:lupen333@dharma.mongohq.com:10041/winecellardb", function(err, result) {
   // Now you can use the database in the db variable
    console.log("Connected to 'winedb' database" + err + result);
 });
