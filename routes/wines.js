@@ -1,23 +1,20 @@
 var mongo = require('mongodb');
-console.log("FUCK1");
+
 var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('winedb', server, {safe: true});
- console.log("FUCK2" + db + server);
+db = new Db('winedb', server);
+
 db.open(function(err, db) {
-    console.log("FUCK3",err);
+     console.log("WHAT IS THIS: " + err + db);
     if(!err) {
-        console.log("FUCK4");
         console.log("Connected to 'winedb' database");
         db.collection('wines', {safe:true}, function(err, collection) {
             if (err) {
-                console.log("FUCK5");
                 console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
                 populateDB();
-                
             }
         });
     }
@@ -51,16 +48,14 @@ exports.addWine = function(req, res) {
             } else {
                 console.log('Success: ' + JSON.stringify(result[0]));
                 res.send(result[0]);
-                //res.send(wine);
             }
         });
     });
-}
+};
 
 exports.updateWine = function(req, res) {
     var id = req.params.id;
     var wine = req.body;
-    delete wine._id;
     console.log('Updating wine: ' + id);
     console.log(JSON.stringify(wine));
     db.collection('wines', function(err, collection) {
@@ -74,7 +69,7 @@ exports.updateWine = function(req, res) {
             }
         });
     });
-}
+};
 
 exports.deleteWine = function(req, res) {
     var id = req.params.id;
@@ -89,7 +84,7 @@ exports.deleteWine = function(req, res) {
             }
         });
     });
-}
+};
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Populate database with sample data -- Only used once: the first time the application is started.
