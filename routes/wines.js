@@ -139,7 +139,7 @@ exports.findById = function(req, res) {
 };
 
 exports.findAll = function(req, res) {
-    db.collectionNames('wines', function(err, collection) {
+    db.collection('wines', function(err, collection) {
         collection.find().toArray(function(err, items) {
             res.send(items);
         });
