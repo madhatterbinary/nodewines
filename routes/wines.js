@@ -78,7 +78,7 @@ var mongodb = require('mongodb');
 var url = require('url');
 var log = console.log;
  
-var connectionUri = url.parse(process.env.MONGOHQ_URL);
+var connectionUri = url.parse('mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15083406');
 var dbName = connectionUri.pathname.replace(/^\//, '');
  
 mongodb.Db.connect(process.env.MONGOHQ_URL, function(error, client) {
