@@ -77,11 +77,14 @@
 var mongodb = require('mongodb');
 var url = require('url');
 var log = console.log;
+var MONGOHQ_URL="mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15083406";
  
-var connectionUri = url.parse('mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15083406');
-
-console.log ('::::::::::::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
+var connectionUri = url.parse(process.env.MONGOHQ_URL);
 var dbName = connectionUri.pathname.replace(/^\//, '');
+
+console.log ('::::::::::::::::::::::::::::process.env.MONGOHQ_URL:::::::::::::::::::::::::::: ' +process.env.MONGOHQ_URL);
+console.log ('::::::::::::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
+console.log ('::::::::::::::::::::::::::::dbName:::::::::::::::::::::::::::: ' +dbName);
  
 mongodb.Db.connect(process.env.MONGOHQ_URL, function(error, client) {
   if (error) throw error;
