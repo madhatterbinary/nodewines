@@ -35,7 +35,7 @@ server.listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));
 });
 
-app.get('/wines', wine.findAll);
+app.get('/winesss', wine.findAll);
 app.get('/wines/:id', wine.findById);
 app.post('/wines', wine.addWine);
 app.put('/wines/:id', wine.updateWine);
