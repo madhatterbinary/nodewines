@@ -98,7 +98,14 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
     var lastCollection = null;
     names.forEach(function(colData){
       var colName = colData.name.replace(dbName + ".", '')
-       log("::::::::::::::::::::::::::::colName:::::::::::::::::::::::::::::: " + colName);
+      if(colName == "wines"){
+        log("::::::::::::::::::::::::::::colName:::::::::::::::::::::::::::::: " + colName);
+        
+         names.find().toArray(function(err, items) {
+            log("::::::::::::::::::::::::::::itemsssssssssss:::::::::::::::::::::::::::::: " + items);
+        });
+      }
+       
       lastCollection = colName;
     });
  
@@ -106,9 +113,7 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
     log("\nDocuments in " + lastCollection);
     var documents = collection.find({}, {limit:5});
   log("::::::::::::::::::::::::::::COLLECTION:::::::::::::::::::::::::::::: " + lastCollection);
-  collection.find().toArray(function(err, items) {
-            log("::::::::::::::::::::::::::::items:::::::::::::::::::::::::::::: " + items);
-        });
+ 
     // output a count of all documents found
     documents.count(function(error, count){
       log("  " + count + " documents(s) found");
