@@ -122,7 +122,7 @@ var theport = process.env.PORT || 5000;
 // operations and release them when the connection is complete.
 mongoose.connect("mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406", function (err, res) {
 
-    console.log (':::::::::::::::::::::::::::000::::::::::::::::::::::::::::Succeeded connected to: ' + err,res);
+    console.log (':::::::::::::::::::::::11111::::000:11111:::::::::::::::::::::::::::Succeeded connected to: ');
   if (err) { 
   console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
