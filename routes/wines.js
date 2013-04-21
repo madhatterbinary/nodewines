@@ -73,12 +73,14 @@
  // });
 ////////////////////////////////////////////////////////
 // npm install mongodb
-console.log ('::::::::::::::::::::::::::::process.env.MONGOHQ_URL:::::::::::::::::::::::::::: ' +process.env.MONGOHQ_URL);
+
 var mongodb = require('mongodb');
 var url = require('url');
 var log = console.log;
  
-var connectionUri = url.parse('mongodb://madhatterbinary:e055d0df78e8ed53171dc622f8634b11@alex.mongohq.com:10047/app15083406');
+var connectionUri = url.parse('mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15083406');
+
+console.log ('::::::::::::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
 var dbName = connectionUri.pathname.replace(/^\//, '');
  
 mongodb.Db.connect(process.env.MONGOHQ_URL, function(error, client) {
