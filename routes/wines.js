@@ -1,5 +1,5 @@
 var mongo = require('mongodb');
-console.log (':::::::::::::::::::::::::::uuuuuuuuuuuuuu::::::::::::::::::::::::::::Succeeded connected to: ');
+//console.log (':::::::::::::::::::::::::::uuuuuuuuuuuuuu::::::::::::::::::::::::::::Succeeded connected to: ');
 var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
@@ -22,18 +22,18 @@ process.env.MONGOHQ_URL ||
 // port 5000.
 var theport = process.env.PORT || 5000;
 
-// Makes connection asynchronously.  Mongoose will queue up database
+// Makes connection asynchronously.  Mongoose will queue up database   ////
 // operations and release them when the connection is complete.
-console.log (':::::::::::::::::::::::::::66666666::::::::::::::::::::::::::::Succeeded connected to: ');
+//console.log (':::::::::::::::::::::::::::66666666::::::::::::::::::::::::::::Succeeded connected to: ');
 
 mongoose.connect("mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406", function (err, res) {
 
-    console.log (':::::::::::::::::::::::::::000::::::::::::::::::::::::::::Succeeded connected to: ' + err,res);
+   // console.log (':::::::::::::::::::::::::::000::::::::::::::::::::::::::::Succeeded connected to: ' + err,res);
   if (err) { 
   console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
    db.collection('wines', function(err, collection) {
-        console.log (':::::::::::::::::::::::::::::::::::::::::::::::::::::::Succeeded collection to: ' + collection);
+        console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + collection);
 
     });
   }
