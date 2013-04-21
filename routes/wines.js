@@ -121,7 +121,7 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
              
                     docs.forEach(function(doc){
 
-                        log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
+                        //log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
 
                     });
                     // close the connection
