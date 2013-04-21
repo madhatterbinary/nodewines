@@ -93,12 +93,12 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
     if(error) throw error;
  
     // output all collection names
-    log("Collectionsssssssssssssssssssssssssssss" + client);
+    log("Collectionsssssssssssnamesssssssssssssssssss" + names);
     log("===========");
     var lastCollection = null;
     names.forEach(function(colData){
       var colName = colData.name.replace(dbName + ".", '')
-      log(colName);
+       log("::::::::::::::::::::::::::::colName:::::::::::::::::::::::::::::: " + colName);
       lastCollection = colName;
     });
  
@@ -120,6 +120,9 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
  
         docs.forEach(function(doc){
           log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
+            doc.find().toArray(function(err, items) {
+            log("::::::::::::::::::::::::::::items:::::::::::::::::::::::::::::: " + items);
+        });
         });
  
         // close the connection
