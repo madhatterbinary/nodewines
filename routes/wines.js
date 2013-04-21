@@ -1,11 +1,11 @@
-// var mongo = require('mongodb');
+var mongo = require('mongodb');
 
-// var Server = mongo.Server,
-//     Db = mongo.Db,
-//     BSON = mongo.BSONPure;
+var Server = mongo.Server,
+    Db = mongo.Db,
+    BSON = mongo.BSONPure;
 
-// var server = new Server('localhost', 27017, {auto_reconnect: true});
-// db = new Db('winecellerdb', server);
+var server = new Server('localhost', 27017, {auto_reconnect: true});
+db = new Db('winecellerdb', server);
 
 // console.log(":::::::::::::::::::::::::::::::::::::::WHAT IS THIS ::::::::::::::::::::::::::::::::::::: " + server + db);
 
@@ -127,8 +127,12 @@ mongoose.connect("mongodb://madhatterbinary:lupen333@localhost:27017/winecellard
   console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
   console.log (':::::::::::::::::::::::::::::::::::::::::::::::::::::::Succeeded connected to: ' + res);
+   db.collection('wines', function(err, collection) {
+        console.log (':::::::::::::::::::::::::::::::::::::::::::::::::::::::Succeeded collection to: ' + collection);
+    });
   }
 });
+
 
 ///////////////////////////////////////////////////////
 exports.findById = function(req, res) {
