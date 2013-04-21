@@ -151,8 +151,8 @@ exports.findById = function(req, res) {
         });
 };
 
-exports.findAlll = function(req, res) {
-console.log('Retrieving wineeeeeee: ');
+exports.findAll = function(req, res) {
+console.log(':::::::::::::::::::::::::::::::::::::::::::::::::::::Retrieving wineeeeeee::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ');
 
         // winecollection.find().toArray(function(err, items) {
         //     console.log('Retrieving wine: ' + items);
