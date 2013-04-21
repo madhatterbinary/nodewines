@@ -49,7 +49,7 @@
 // var connect = require( 'connect' );
 // var mongo = require( 'mongodb' );
 
-// var port = process.env.PORT || 27017;
+ // var port = process.env.PORT || 27017;
 // var mongoUri = process.env.MONGOLAB_URI;
 
 // var database = null;
@@ -105,6 +105,7 @@
 
 var http = require ('http');             // For serving a basic web page.
 var mongoose = require ("mongoose"); // The reason for this demo.
+var port = process.env.PORT || 27017;
 
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.  
@@ -119,7 +120,7 @@ var theport = process.env.PORT || 5000;
 
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
-mongoose.connect(uristring, function (err, res) {
+mongoose.connect("mongodb://madhatterbinary:lupen333@localhost:27017/winecellardb", function (err, res) {
   if (err) { 
   console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
