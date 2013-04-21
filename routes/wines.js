@@ -102,12 +102,15 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
        
       lastCollection = colName;
       log("::::::::::::::::::::::::::::lastCollection::::1:::::::::::::::::::::::::: " + lastCollection);
+      if (lastCollection == "wines") {
+        var collection = new db.Collection(client, lastCollection);
+      };
     });
  
-    var collection = new db.Collection(client, lastCollection);
+    
     log("\nDocuments in " + lastCollection);
     log("::::::::::::::::::::::::::::collection::::1:::::::::::::::::::::::::: " + collection);
-    var documents = collection.find({}, {limit:5});
+    var documents = collection.find({}, {limit:24});
     
   log("::::::::::::::::::::::::::::documents::::1:::::::::::::::::::::::::: " + documents);
  
