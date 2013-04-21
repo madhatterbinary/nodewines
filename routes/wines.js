@@ -1,28 +1,28 @@
-var mongo = require('mongoskin');
-//console.log (':::::::::::::::::::::::::::uuuuuuuuuuuuuu::::::::::::::::::::::::::::Succeeded connected to: ');
-var Server = mongo.Server,
-    Db = mongo.Db,
-    BSON = mongo.BSONPure;
+// var mongo = require('mongoskin');
+// //console.log (':::::::::::::::::::::::::::uuuuuuuuuuuuuu::::::::::::::::::::::::::::Succeeded connected to: ');
+// var Server = mongo.Server,
+//     Db = mongo.Db,
+//     BSON = mongo.BSONPure;
 
-var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('winecellerdb', server, {safe:true});
+// var server = new Server('localhost', 27017, {auto_reconnect: true});
+// db = new Db('winecellerdb', server, {safe:true});
 
-//new Db(new Server('localhost', 27017), {safe:false}) 
+// //new Db(new Server('localhost', 27017), {safe:false}) 
 
-var http = require ('http');             // For serving a basic web page.
-var mongoose = require ("mongoose"); // The reason for this demo.
-// var port = process.env.PORT || 27017;
+// var http = require ('http');             // For serving a basic web page.
+// var mongoose = require ("mongoose"); // The reason for this demo.
+// // var port = process.env.PORT || 27017;
 
-// Here we find an appropriate database to connect to, defaulting to
-// localhost if we don't find one.  
-var uristring = 
-process.env.MONGOLAB_URI || 
-process.env.MONGOHQ_URL || 
-'mongodb://localhost/HelloMongoose';
+// // Here we find an appropriate database to connect to, defaulting to
+// // localhost if we don't find one.  
+// var uristring = 
+// process.env.MONGOLAB_URI || 
+// process.env.MONGOHQ_URL || 
+// 'mongodb://localhost/HelloMongoose';
 
-// The http server will listen to an appropriate port, or default to
-// port 5000.
-var theport = process.env.PORT || 5000;
+// // The http server will listen to an appropriate port, or default to
+// // port 5000.
+// var theport = process.env.PORT || 5000;
 
 // Makes connection asynchronously.  Mongoose will queue up database   ////
 // operations and release them when the connection is complete.
@@ -43,25 +43,25 @@ var theport = process.env.PORT || 5000;
 //     });
 //   }
 // });
-var express = require('express');
-var mongo = require('mongoskin');
+// var express = require('express');
+// var mongo = require('mongoskin');
 
-var app = express();
-var db = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406');
+// var app = express();
+// var db = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406');
 
-app.get('/', function(request, response) {
+// app.get('/', function(request, response) {
     
-    db.collection('wines').find().toArray(function(err, items) {
-        if (err) throw err;
-        console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + JSON.stringify(items));
-        //response.send(JSON.stringify(items));
-    });  
-});
+//     db.collection('wines').find().toArray(function(err, items) {
+//         if (err) throw err;
+//         console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + JSON.stringify(items));
+//         //response.send(JSON.stringify(items));
+//     });  
+// });
 
-var port = process.env.PORT || 27017;
-app.listen(port, function() {
-  console.log('Listening on ' + port);
-});
+// var port = process.env.PORT || 27017;
+// app.listen(port, function() {
+//   console.log('Listening on ' + port);
+// });
 
  // var db = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406', function (err, res) {
  //          db.collection('wines').find().toArray(function(err, items) {
@@ -71,7 +71,54 @@ app.listen(port, function() {
         
  //    }); 
  // });
-     
+////////////////////////////////////////////////////////
+// npm install mongodb
+var mongodb = require('mongodb');
+var url = require('url');
+var log = console.log;
+ 
+var connectionUri = url.parse(process.env.MONGOHQ_URL);
+var dbName = connectionUri.pathname.replace(/^\//, '');
+ 
+mongodb.Db.connect(process.env.MONGOHQ_URL, function(error, client) {
+  if (error) throw error;
+ 
+  client.collectionNames(function(error, names){
+    if(error) throw error;
+ 
+    // output all collection names
+    log("Collections");
+    log("===========");
+    var lastCollection = null;
+    names.forEach(function(colData){
+      var colName = colData.name.replace(dbName + ".", '')
+      log(colName);
+      lastCollection = colName;
+    });
+ 
+    var collection = new mongodb.Collection(client, lastCollection);
+    log("\nDocuments in " + lastCollection);
+    var documents = collection.find({}, {limit:5});
+ 
+    // output a count of all documents found
+    documents.count(function(error, count){
+      log("  " + count + " documents(s) found");
+      log("====================");
+ 
+      // output the first 5 documents
+      documents.toArray(function(error, docs) {
+        if(error) throw error;
+ 
+        docs.forEach(function(doc){
+          log(doc);
+        });
+ 
+        // close the connection
+        client.close();
+      });
+    });
+  });
+});
 
 
 ///////////////////////////////////////////////////////
