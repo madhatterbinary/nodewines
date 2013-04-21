@@ -35,8 +35,8 @@ mongoose.connect("mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497
      console.log ('::::::::::::::::::::::::::::ressssssssssssssss:::::::::::::::::::::::::::Succeeded res to: ' + res);
    db.collection('wines', function(err, collection) {
         console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + collection);
-        var conn = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406"');
-        conn.collection('madhatterbinary').find().toArray(function(err, items) {
+        //var conn = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406"');
+        db.collection('wines').find().toArray(function(err, items) {
             if (err) throw err;
             
             console.log ('::::::::::::::::::::::::::::itemsitemsitemsitems:::::::::::::::::::::::::::Succeeded collection to: ' + items);
