@@ -5,11 +5,13 @@ var Server = mongo.Server,
     BSON = mongo.BSONPure;
 
 // var server = new Server('localhost', 27017, {auto_reconnect: true});
-// db = new Db('winecellerdb', server);
+// db = new Db('winecellerdb', server, {safe:false});
+
+//new Db(new Server('localhost', 27017), {safe:false}) 
 
 var http = require ('http');             // For serving a basic web page.
 var mongoose = require ("mongoose"); // The reason for this demo.
-var port = process.env.PORT || 27017;
+// var port = process.env.PORT || 27017;
 
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.  
@@ -41,14 +43,34 @@ var theport = process.env.PORT || 5000;
 //     });
 //   }
 // });
- var db = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406', function (err, res) {
-          db.collection('wines').find().toArray(function(err, items) {
+var express = require('express');
+var mongo = require('mongoskin');
+
+var app = express.createServer(express.logger());
+var db = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406');
+
+app.get('/', function(request, response) {
+    
+    db.collection('wines').find().toArray(function(err, items) {
         if (err) throw err;
-         console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + JSON.stringify(items));
-         res.send(items);
+        console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + JSON.stringify(items));
+        response.send(JSON.stringify(items));
+    });  
+});
+
+var port = process.env.PORT || 27017;
+app.listen(port, function() {
+  console.log('Listening on ' + port);
+});
+
+ // var db = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406', function (err, res) {
+ //          db.collection('wines').find().toArray(function(err, items) {
+ //        if (err) throw err;
+ //         console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + JSON.stringify(items));
+ //         res.send(items);
         
-    }); 
- });
+ //    }); 
+ // });
      
 
 
