@@ -90,7 +90,7 @@ exports.findAll = function(req, res) {
 
         winecollection.find().toArray(function(err, items) {
             console.log('Retrieving wine: ' + items);
-            res.send(JSON.stringify(items);
+            res.send(JSON.stringify(items));
         });
 };
 
