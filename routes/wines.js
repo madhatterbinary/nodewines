@@ -21,31 +21,32 @@ process.env.MONGOHQ_URL ||
 // The http server will listen to an appropriate port, or default to
 // port 5000.
 var theport = process.env.PORT || 5000;
-var mongo = require('mongoskin');
+
 // Makes connection asynchronously.  Mongoose will queue up database   ////
 // operations and release them when the connection is complete.
 //console.log (':::::::::::::::::::::::::::66666666::::::::::::::::::::::::::::Succeeded connected to: ');
 
-mongoose.connect("mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406", function (err, res) {
+// mongoose.connect("mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406", function (err, res) {
 
-   // console.log (':::::::::::::::::::::::::::000::::::::::::::::::::::::::::Succeeded connected to: ' + err,res);
-  if (err) { 
-  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-  } else {
-     console.log ('::::::::::::::::::::::::::::ressssssssssssssss:::::::::::::::::::::::::::Succeeded res to: ' + res);
-   db.collection('wines', function(err, collection) {
-        console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + collection);
-        //var conn = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406"');
-        db.collection('wines').find().toArray(function(err, items) {
-            if (err) throw err;
-            
-            console.log ('::::::::::::::::::::::::::::itemsitemsitemsitems:::::::::::::::::::::::::::Succeeded collection to: ' + items);
-        });  
-        /////////////////////////////
+//    // console.log (':::::::::::::::::::::::::::000::::::::::::::::::::::::::::Succeeded connected to: ' + err,res);
+//   if (err) { 
+//   console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+//   } else {
+//      console.log ('::::::::::::::::::::::::::::ressssssssssssssss:::::::::::::::::::::::::::Succeeded res to: ' + res);
+//    db.collection('wines', function(err, collection) {
+//         console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + collection);
 
-    });
-  }
-});
+//         /////////////////////////////
+
+//     });
+//   }
+// });
+ var conn = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406');
+    conn.collection('wines').find().toArray(function(err, items) {
+        if (err) throw err;
+         console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + JSON.stringify(items));
+        response.send();
+    });  
 
 
 ///////////////////////////////////////////////////////
