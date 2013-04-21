@@ -46,62 +46,86 @@
 //     db.close();
 //   });
 // });
-var connect = require( 'connect' );
-var mongo = require( 'mongodb' );
+// var connect = require( 'connect' );
+// var mongo = require( 'mongodb' );
 
-var port = process.env.PORT || 27017;
-var mongoUri = process.env.MONGOLAB_URI;
+// var port = process.env.PORT || 27017;
+// var mongoUri = process.env.MONGOLAB_URI;
 
-var database = null;
-var winesCollection = null;
+// var database = null;
+// var winesCollection = null;
 
 
 
-var math = {
-    add: function(a, b, fn){
+// var math = {
+//     add: function(a, b, fn){
 
-        console.log('add');
+//         console.log('add');
 
-        var result = a + b;
+//         var result = a + b;
 
-        var message = a + " + " + b + " = " + result;
+//         var message = a + " + " + b + " = " + result;
 
-        fn(null, result);
-    },
-    sub: function(a, b, fn){
-        fn(null, a - b);
-    }
-};
+//         fn(null, result);
+//     },
+//     sub: function(a, b, fn){
+//         fn(null, a - b);
+//     }
+// };
 
-var date = {
-    time: function(fn){
-        fn(null, new Date().toUTCString());
-    }
-};
+// var date = {
+//     time: function(fn){
+//         fn(null, new Date().toUTCString());
+//     }
+// };
 
-mongo.connect( mongoUri, {}, dbConnectCallback );
+// mongo.connect( mongoUri, {}, dbConnectCallback );
 
-connect.createServer(require('connect-jsonrpc')(math, date)).listen(port);
+// connect.createServer(require('connect-jsonrpc')(math, date)).listen(port);
 
-function dbConnectCallback( error, db )
-{
-    database = db;
+// function dbConnectCallback( error, db )
+// {
+//     database = db;
 
-    database.addListener( "error", handleError );
+//     database.addListener( "error", handleError );
 
-    database.collection( "contacts", collectionCallback );
+//     database.collection( "contacts", collectionCallback );
 
-};
+// };
 
-function handleError( error )
-{
-    console.log( "Error connecting to MongoLab" );
-};
+// function handleError( error )
+// {
+//     console.log( "Error connecting to MongoLab" );
+// };
 
-function collectionCallback( error, collection )
-{
-    winesCollection = collection;
-};
+// function collectionCallback( error, collection )
+// {
+//     winesCollection = collection;
+// };
+
+var http = require ('http');             // For serving a basic web page.
+var mongoose = require ("mongoose"); // The reason for this demo.
+
+// Here we find an appropriate database to connect to, defaulting to
+// localhost if we don't find one.  
+var uristring = 
+process.env.MONGOLAB_URI || 
+process.env.MONGOHQ_URL || 
+'mongodb://localhost/HelloMongoose';
+
+// The http server will listen to an appropriate port, or default to
+// port 5000.
+var theport = process.env.PORT || 5000;
+
+// Makes connection asynchronously.  Mongoose will queue up database
+// operations and release them when the connection is complete.
+mongoose.connect(uristring, function (err, res) {
+  if (err) { 
+  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+  console.log (':::::::::::::::::::::::::::::::::::::::::::::::::::::::Succeeded connected to: ' + uristring);
+  }
+});
 
 ///////////////////////////////////////////////////////
 exports.findById = function(req, res) {
