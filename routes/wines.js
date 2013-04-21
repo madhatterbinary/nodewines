@@ -93,7 +93,7 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
     if(error) throw error;
  
     // output all collection names
-    log("Collectionsssssssssssnamesssssssssssssssssss!!!!!!!!!!" + names);
+    log("collectionNamessssss!!!!!!!!!!" + names);
 
     log("===========");
     var lastCollection = null;
