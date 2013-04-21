@@ -74,7 +74,7 @@
 ////////////////////////////////////////////////////////
 // npm install mongodb
 
-//var db = require('mongodb');
+var db = require('mongodb');
 var url = require('url');
 var log = console.log;
 var MONGOHQ_URL="mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15083406";
