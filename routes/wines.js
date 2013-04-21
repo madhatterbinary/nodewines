@@ -4,8 +4,8 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
-var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('winecellerdb', server, {safe:false});
+// var server = new Server('localhost', 27017, {auto_reconnect: true});
+// db = new Db('winecellerdb', server, {safe:false});
 
 //new Db(new Server('localhost', 27017), {safe:false}) 
 
@@ -46,7 +46,7 @@ var theport = process.env.PORT || 5000;
 var express = require('express');
 var mongo = require('mongoskin');
 
-var app = express.createServer(express.logger());
+var app = express();
 var db = mongo.db('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406');
 
 app.get('/', function(request, response) {
