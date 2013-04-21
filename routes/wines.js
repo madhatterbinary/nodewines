@@ -121,10 +121,12 @@ var theport = process.env.PORT || 5000;
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
 mongoose.connect("mongodb://madhatterbinary:lupen333@localhost:27017/winecellardb", function (err, res) {
+
+    console.log (':::::::::::::::::::::::::::000::::::::::::::::::::::::::::Succeeded connected to: ' + res);
   if (err) { 
   console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
-  console.log (':::::::::::::::::::::::::::::::::::::::::::::::::::::::Succeeded connected to: ' + uristring);
+  console.log (':::::::::::::::::::::::::::::::::::::::::::::::::::::::Succeeded connected to: ' + res);
   }
 });
 
