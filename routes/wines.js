@@ -45,8 +45,8 @@ var theport = process.env.PORT || 5000;
     db.collection('wines').find().toArray(function(err, items) {
         if (err) throw err;
          console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + JSON.stringify(items));
+         res.send(items);
         
-        findAll();
     });  
 
 
