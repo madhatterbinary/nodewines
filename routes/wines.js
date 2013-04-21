@@ -9,7 +9,7 @@ var db = require('mongodb');
 var url = require('url');
 var log = console.log;
 
-db = new Db('winecellerdb', server, {safe:true});
+// db = new Db('winecellerdb', server, {safe:true});
 
 
 var winecollection;
