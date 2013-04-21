@@ -84,8 +84,8 @@ var connectionUri = url.parse(MONGOHQ_URL);
 var dbName = connectionUri.pathname.replace(/^\//, '');
 
 console.log ('::::::::::123::::::::::::::::::MONGOHQ_URL:::::::::::::::::::::::::::: ' +MONGOHQ_URL);
-console.log ('::::::::::12::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
-console.log ('::::::::::12::::::::::::::::::dbName:::::::::::::::::::::::::::: ' +dbName);
+console.log ('::::::::::123::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
+console.log ('::::::::::123::::::::::::::::::dbName:::::::::::::::::::::::::::: ' +dbName);
  
 db.Db.connect(MONGOHQ_URL, function(error, client) {
   if (error) throw error;
