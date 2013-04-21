@@ -1,5 +1,5 @@
 var mongo = require('mongodb');
-console.log (':::::::::::::::::::::::::::66665556666::::::::::::::::::::::::::::Succeeded connected to: ');
+
 var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
@@ -38,17 +38,7 @@ mongoose.connect("mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497
     });
   }
 });
-db.open(function(err, db) {
-        if(!err) {
-            console.log("Connected to 'winedb' database"+db);
-            db.collection('wines', {safe:true}, function(err, collection) {
-                if (err) {
-                    console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-                    
-                }
-            });
-        }
-    });
+
 
 ///////////////////////////////////////////////////////
 exports.findById = function(req, res) {
