@@ -113,7 +113,7 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
               log("::::::::::::::::::::::::::::documents::::end:::::::::::::::::::::::::: " + documents);
                  winecollection.find().toArray(function(err, items) {
                    
-                   log("::::::::::::::::::::::::::::WINE collection::::00111:::::::::::::::::::::::::: " + items);
+                   log("::::::::::::::::::::::::::::WINE collection::::00111 JSON:::::::::::::::::::::::::: " + JSON.stringify(items));
 
                 
                  });
