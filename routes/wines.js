@@ -80,7 +80,7 @@ var log = console.log;
 //var connectionUri = url.parse('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406');
 var dbName = "heroku_app15083406";
  
-mongodb.Db.connect('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406', function(error, client) {
+mongodb.Db.connect('mongodb://madhatterbinary:lupen333@alex.mongolab.com:10047/app15083406', function(error, client) {
   if (error) throw error;
  
   client.collectionNames(function(error, names){
