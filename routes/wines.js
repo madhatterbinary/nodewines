@@ -102,7 +102,7 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
       lastCollection = colName;
     });
  
-    var collection = new mongodb.Collection(client, lastCollection);
+    var collection = new db.Collection(client, lastCollection);
     log("\nDocuments in " + lastCollection);
     var documents = collection.find({}, {limit:5});
  
