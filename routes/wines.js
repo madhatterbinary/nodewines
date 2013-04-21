@@ -120,6 +120,8 @@ var theport = process.env.PORT || 5000;
 
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
+console.log (':::::::::::::::::::::::::::66666666::::::::::::::::::::::::::::Succeeded connected to: ');
+
 mongoose.connect("mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406", function (err, res) {
 
     console.log (':::::::::::::::::::::::::::000::::::::::::::::::::::::::::Succeeded connected to: ' + err,res);
@@ -128,24 +130,8 @@ mongoose.connect("mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497
   } else {
    db.collection('wines', function(err, collection) {
         console.log (':::::::::::::::::::::::::::::::::::::::::::::::::::::::Succeeded collection to: ' + collection);
-         collection.find().toArray(function(err, items) {
-            console.log (':::::::::::::::::::::::::::::::::::::::::::::::::::::::Items: ' + items);
-        });
 
     });
-   /////////
-   db.open(function(err, db) {
-    if(!err) {
-        console.log("Connected to 'winedb' database");
-        db.collection('wines', {safe:true}, function(err, collection) {
-            if (!err) {
-                console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-               
-            }
-        });
-    }
-});
-   /////////
   }
 });
 
