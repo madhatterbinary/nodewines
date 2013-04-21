@@ -98,13 +98,6 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
     var lastCollection = null;
     names.forEach(function(colData){
       var colName = colData.name.replace(dbName + ".", '')
-      if(colName == "wines"){
-        log("::::::::::::::::::::::::::::colName:::::::::::::::::::::::::::::: " + colName);
-        
-         colData.find().toArray(function(err, items) {
-            log("::::::::::::::::::::::::::::itemsssssssssss:::::::::::::::::::::::::::::: " + items);
-        });
-      }
        
       lastCollection = colName;
     });
@@ -125,11 +118,15 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
  
         docs.forEach(function(doc){
           log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
-            doc.find().toArray(function(err, items) {
-            log("::::::::::::::::::::::::::::items:::::::::::::::::::::::::::::: " + items);
+            //doc.find().toArray(function(err, items) {
+           
         });
         });
- 
+         db.collection('wines', function(err, collection) {
+                collection.find().toArray(function(err, items) {
+                    log("::::::::::::::::::::::::::::items:::::::::::::::::::::::::::::: " + items);
+                });
+            });
         // close the connection
         client.close();
       });
