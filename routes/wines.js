@@ -117,23 +117,23 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
         if(error) throw error;
  
         docs.forEach(function(doc){
-          log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
-            //doc.find().toArray(function(err, items) {
-           
+          
+            doc.find().toArray(function(err, items) {
+           log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
         });
         });
-        
+        db.collection('wines', function(err, collection) {
+                collection.find().toArray(function(err, items) {
+                    log("::::::::::::::::::::::::::::items:::::::::::::::::::::::::::::: " + items);
+                });
+            });
         // close the connection
         client.close();
       });
     });
 
   });
-            db.collection('wines', function(err, collection) {
-                collection.find().toArray(function(err, items) {
-                    log("::::::::::::::::::::::::::::items:::::::::::::::::::::::::::::: " + items);
-                });
-            });
+            
 });
 
 
