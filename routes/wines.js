@@ -104,7 +104,9 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
  
     var collection = new db.Collection(client, lastCollection);
     log("\nDocuments in " + lastCollection);
-    var documents = collection.find({}, {limit:24});
+    var documents = collection.find().toArray(function(err, items) {
+            log("::::::::::::::::::::::::::::items::::1111111:::::::::::::::::::::::::: " + items);
+        });
     
   log("::::::::::::::::::::::::::::COLLECTION::::1111111:::::::::::::::::::::::::: " + documents);
  
