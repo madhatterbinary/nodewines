@@ -111,9 +111,9 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
                 winecollection = new db.Collection(client, lastCollection);
     
               log("::::::::::::::::::::::::::::documents::::end:::::::::::::::::::::::::: " + documents);
-                 collection.find().toArray(function(err, items) {
+                 winecollection.find().toArray(function(err, items) {
                    
-                   log("::::::::::::::::::::::::::::WINE collection::::00:::::::::::::::::::::::::: " + items);
+                   log("::::::::::::::::::::::::::::WINE collection::::00111:::::::::::::::::::::::::: " + items);
 
                 
                  });
@@ -152,7 +152,7 @@ exports.findById = function(req, res) {
 };
 
 exports.findAll = function(req, res) {
-
+console.log('Retrieving wineeeeeee: ');
 
         winecollection.find().toArray(function(err, items) {
             console.log('Retrieving wine: ' + items);
