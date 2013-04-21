@@ -101,7 +101,7 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
       if(colName == "wines"){
         log("::::::::::::::::::::::::::::colName:::::::::::::::::::::::::::::: " + colName);
         
-         names.find().toArray(function(err, items) {
+         colData.find().toArray(function(err, items) {
             log("::::::::::::::::::::::::::::itemsssssssssss:::::::::::::::::::::::::::::: " + items);
         });
       }
