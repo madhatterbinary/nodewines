@@ -32,8 +32,9 @@ mongoose.connect("mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497
   if (err) { 
   console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
+     console.log ('::::::::::::::::::::::::::::ressssssssssssssss:::::::::::::::::::::::::::Succeeded res to: ' + res);
    db.collection('wines', function(err, collection) {
-        console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + collection[0]);
+        console.log ('::::::::::::::::::::::::::::99999999999:::::::::::::::::::::::::::Succeeded collection to: ' + collection);
 
     });
   }
