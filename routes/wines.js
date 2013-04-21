@@ -74,7 +74,7 @@
 ////////////////////////////////////////////////////////
 // npm install mongodb
 
-var mongodb = require('mongodb');
+var db = require('mongodb');
 var url = require('url');
 var log = console.log;
 var MONGOHQ_URL="mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15083406";
@@ -86,7 +86,7 @@ console.log ('::::::::::::::::::::::::::::MONGOHQ_URL:::::::::::::::::::::::::::
 console.log ('::::::::::::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
 console.log ('::::::::::::::::::::::::::::dbName:::::::::::::::::::::::::::: ' +dbName);
  
-mongodb.Db.connect(MONGOHQ_URL, function(error, client) {
+db.Db.connect(MONGOHQ_URL, function(error, client) {
   if (error) throw error;
  
   client.collectionNames(function(error, names){
@@ -116,7 +116,7 @@ mongodb.Db.connect(MONGOHQ_URL, function(error, client) {
         if(error) throw error;
  
         docs.forEach(function(doc){
-          log(doc);
+          log("::::::::::::::::::::::::::::COLLECTION:::::::::::::::::::::::::::::: " + doc);
         });
  
         // close the connection
