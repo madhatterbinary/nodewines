@@ -97,42 +97,20 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
 
     log("===========");
     var lastCollection = null;
-    names.forEach(function(colData){
-      var colName = colData.name.replace(dbName + ".", '')
-       
-      lastCollection = colName;
-      log("::::::::::::::::::::::::::::lastCollection::::1:::::::::::::::::::::::::: " + lastCollection);
-      if (lastCollection == "wines") {
-        var collection = new db.Collection(client, lastCollection);
+        names.forEach(function(colData){
+          var colName = colData.name.replace(dbName + ".", '')
+           
+          lastCollection = colName;
+          log("::::::::::::::::::::::::::::ALL Collection:::::::::::::::::::::::::::::: " + lastCollection);
+          if (lastCollection == "wines") {
+            var collection = new db.Collection(client, lastCollection);
 
-            log("\nDocuments in " + lastCollection);
-    log("::::::::::::::::::::::::::::collection::::1:::::::::::::::::::::::::: " + collection);
-    var documents = collection.find({}, {limit:24});
-    
-  log("::::::::::::::::::::::::::::documents::::1:::::::::::::::::::::::::: " + documents);
- 
-    // output a count of all documents found
-    documents.count(function(error, count){
-      log("  " + count + " documents(s) found");
-      log("====================");
- 
-      // output the first 5 documents
-      documents.toArray(function(error, docs) {
-        if(error) throw error;
- 
-        docs.forEach(function(doc){
+                log("\nDocuments in " + lastCollection);
+            log("::::::::::::::::::::::::::::collection::::1:::::::::::::::::::::::::: " + collection);
 
-            log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
-
-        });
-        // close the connection
-        client.close();
-      });
-    });
-
-  });
-      };
-    });            
+          };
+        }); 
+    });           
 });
 
 
