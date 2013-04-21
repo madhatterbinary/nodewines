@@ -163,8 +163,7 @@ console.log('Retrieving wineeeeeee: ');
 exports.addWine = function(req, res) {
     var wine = req.body;
     console.log('Adding wine: ' + JSON.stringify(wine));
-    db.collection('wines', function(err, collection) {
-        collection.insert(wine, {safe:true}, function(err, result) {
+        winecollection.insert(wine, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred'});
             } else {
@@ -172,7 +171,6 @@ exports.addWine = function(req, res) {
                 res.send(result[0]);
             }
         });
-    });
 };
 
 exports.updateWine = function(req, res) {
@@ -180,8 +178,7 @@ exports.updateWine = function(req, res) {
     var wine = req.body;
     console.log('Updating wine: ' + id);
     console.log(JSON.stringify(wine));
-    db.collection('wines', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, wine, {safe:true}, function(err, result) {
+        winecollection.update({'_id':new BSON.ObjectID(id)}, wine, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating wine: ' + err);
                 res.send({'error':'An error has occurred'});
@@ -190,14 +187,12 @@ exports.updateWine = function(req, res) {
                 res.send(wine);
             }
         });
-    });
 };
 
 exports.deleteWine = function(req, res) {
     var id = req.params.id;
     console.log('Deleting wine: ' + id);
-    db.collection('wines', function(err, collection) {
-        collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
+        winecollection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred - ' + err});
             } else {
@@ -205,5 +200,4 @@ exports.deleteWine = function(req, res) {
                 res.send(req.body);
             }
         });
-    });
 };
