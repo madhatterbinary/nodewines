@@ -1,9 +1,12 @@
-var mongo = require('mongodb');
+var mongo = require('mongoskin');
 //console.log (':::::::::::::::::::::::::::uuuuuuuuuuuuuu::::::::::::::::::::::::::::Succeeded connected to: ');
 var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
-var theport = process.env.PORT || 5000;
+
+// var server = new Server('localhost', 27017, {auto_reconnect: true});
+// db = new Db('winecellerdb', server);
+
 var http = require ('http');             // For serving a basic web page.
 var mongoose = require ("mongoose"); // The reason for this demo.
 var port = process.env.PORT || 27017;
@@ -15,15 +18,9 @@ process.env.MONGOLAB_URI ||
 process.env.MONGOHQ_URL || 
 'mongodb://localhost/HelloMongoose';
 
-
-// var server = new Server('localhost', theport, {auto_reconnect: true});
-// db = new Db('winecellerdb', server);
-
-
-
 // The http server will listen to an appropriate port, or default to
 // port 5000.
-
+var theport = process.env.PORT || 5000;
 
 // Makes connection asynchronously.  Mongoose will queue up database   ////
 // operations and release them when the connection is complete.
