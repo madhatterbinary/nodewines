@@ -2,7 +2,6 @@ var db = require('mongodb');
 var url = require('url');
 var log = console.log;
 
-
 var winecollection;
 var MONGOHQ_URL="mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15083406";
  
@@ -14,26 +13,46 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
 
   client.collectionNames(function(error, names){
     if(error) throw error;
- 
+
     var lastCollection = null;
         names.forEach(function(colData){
           var colName = colData.name.replace(dbName + ".", '')
            
           lastCollection = colName;
+          log("::::::::::::::::::::::::::::ALL Collection:::::::::::::::::::::::::::::: " + lastCollection);
           if (lastCollection == "wines") {
             var collection = new db.Collection(client, lastCollection);
 
                 log("\nDocuments in " + lastCollection);
                 var documents = collection.find({}, {limit:24});
                 winecollection = new db.Collection(client, lastCollection);
-
+    
+              log("::::::::::::::::::::::::::::documents::::end:::::::::::::::::::::::::: " + documents);
                  winecollection.find().toArray(function(err, items) {
                    
                    log("::::::::::::::::::::::::::::WINE collection::::00111 JSON:::::::::::::::::::::::::: " + JSON.stringify(items));
 
                 
                  });
-                 client.close();
+                // output a count of all documents found
+                documents.count(function(error, count){
+                  log("  " + count + " documents(s) found");
+                  log("====================");
+             
+                  // output the first 5 documents
+                  documents.toArray(function(error, docs) {
+                    if(error) throw error;
+             
+                    docs.forEach(function(doc){
+
+                        //log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
+
+                    });
+                    // close the connection
+                   // client.close();
+                  });
+                });
+
           };
         }); 
     });           
@@ -45,11 +64,12 @@ exports.findById = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving wine: ' + id);
         winecollection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(JSON.stringify(items));
+            res.send(item);
         });
 };
 
 exports.findAll = function(req, res) {
+
 
         winecollection.find().toArray(function(err, items) {
             console.log('Retrieving wine: ' + items);
@@ -65,7 +85,7 @@ exports.addWine = function(req, res) {
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('Success: ' + JSON.stringify(result[0]));
-                res.send(JSON.stringify(result[0]));
+                res.send(result[0]);
             }
         });
 };
