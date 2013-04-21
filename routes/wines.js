@@ -108,7 +108,7 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
 
                 log("\nDocuments in " + lastCollection);
                 var documents = collection.find({}, {limit:24});
-                winecollection = collection.find({}, {limit:24});
+                winecollection = new db.Collection(client, lastCollection);
     
               log("::::::::::::::::::::::::::::documents::::end:::::::::::::::::::::::::: " + documents);
                  collection.find().toArray(function(err, items) {
@@ -152,6 +152,8 @@ exports.findById = function(req, res) {
 };
 
 exports.findAll = function(req, res) {
+
+     console.log('Retrieving wine: ' + winecollection);
         winecollection.find().toArray(function(err, items) {
             res.send(items);
         });
