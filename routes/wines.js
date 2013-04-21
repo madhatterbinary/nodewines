@@ -93,7 +93,12 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
     if(error) throw error;
  
     // output all collection names
-    log("Collectionsssssssssssnamesssssssssssssssssss!!!!!!!!!!" + this);
+    log("Collectionsssssssssssnamesssssssssssssssssss!!!!!!!!!!" + names);
+    if(names == "wines"){
+
+         log("Collectionsssssssssssnamesssssssssssssssssss!!!!!!!!!!" + names);
+          log("Collectionsssssssssssnamesssssssssssssssssss!!!!!!!!!!" + client.collection);
+    }
     log("===========");
     var lastCollection = null;
     names.forEach(function(colData){
@@ -104,11 +109,9 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
  
     var collection = new db.Collection(client, lastCollection);
     log("\nDocuments in " + lastCollection);
-    var documents = collection.find().toArray(function(err, items) {
-            log("::::::::::::::::::::::::::::items::::1111111:::::::::::::::::::::::::: " + items);
-        });
+    var documents = collection.find({}, {limit:5});
     
-  log("::::::::::::::::::::::::::::COLLECTION::::1111111:::::::::::::::::::::::::: " + documents);
+  log("::::::::::::::::::::::::::::COLLECTION::::1:::::::::::::::::::::::::: " + documents);
  
     // output a count of all documents found
     documents.count(function(error, count){
