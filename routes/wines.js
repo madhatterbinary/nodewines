@@ -77,10 +77,10 @@ var mongodb = require('mongodb');
 var url = require('url');
 var log = console.log;
  
-var connectionUri = url.parse('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406');
-var dbName = connectionUri.pathname.replace(/^\//, '');
+//var connectionUri = url.parse('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406');
+var dbName = "heroku_app15083406";
  
-mongodb.Db.connect(process.env.MONGOHQ_URL, function(error, client) {
+mongodb.Db.connect('mongodb://madhatterbinary:lupen333@ds043497.mongolab.com:43497/heroku_app15083406', function(error, client) {
   if (error) throw error;
  
   client.collectionNames(function(error, names){
