@@ -86,7 +86,7 @@ console.log ('::::::::::::::::::::::::::::MONGOHQ_URL:::::::::::::::::::::::::::
 console.log ('::::::::::::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
 console.log ('::::::::::::::::::::::::::::dbName:::::::::::::::::::::::::::: ' +dbName);
  
-mongodb.Db.connect(process.env.MONGOHQ_URL, function(error, client) {
+mongodb.Db.connect(MONGOHQ_URL, function(error, client) {
   if (error) throw error;
  
   client.collectionNames(function(error, names){
