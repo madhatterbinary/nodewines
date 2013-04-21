@@ -4,8 +4,8 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
-// var server = new Server('localhost', 27017, {auto_reconnect: true});
-// db = new Db('winecellerdb', server, {safe:false});
+var server = new Server('localhost', 27017, {auto_reconnect: true});
+db = new Db('winecellerdb', server, {safe:false});
 
 //new Db(new Server('localhost', 27017), {safe:false}) 
 
