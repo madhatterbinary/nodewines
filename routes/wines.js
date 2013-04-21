@@ -74,7 +74,7 @@
 ////////////////////////////////////////////////////////
 // npm install mongodb
 
-var db;// = require('mongodb');
+var db = require('mongodb');
 var url = require('url');
 var log = console.log;
 var MONGOHQ_URL="mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15083406";
@@ -88,7 +88,7 @@ console.log ('::::::::::::::::::::::::::::dbName:::::::::::::::::::::::::::: ' +
  
 db.Db.connect(MONGOHQ_URL, function(error, client) {
   if (error) throw error;
- db = client;
+
   client.collectionNames(function(error, names){
     if(error) throw error;
  
@@ -104,8 +104,8 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
  
     var collection = new db.Collection(client, lastCollection);
     log("\nDocuments in " + lastCollection);
-    var documents = collection.find({}, {limit:5});
- 
+    var documents = collection.find({}, {limit:24});
+  log("::::::::::::::::::::::::::::COLLECTION:::::::::::::::::::::::::::::: " + dodocuments);
     // output a count of all documents found
     documents.count(function(error, count){
       log("  " + count + " documents(s) found");
@@ -116,7 +116,7 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
         if(error) throw error;
  
         docs.forEach(function(doc){
-          log("::::::::::::::::::::::::::::COLLECTION:::::::::::::::::::::::::::::: " + doc);
+          log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
         });
  
         // close the connection
