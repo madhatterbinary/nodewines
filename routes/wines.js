@@ -82,9 +82,9 @@ var MONGOHQ_URL="mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15
 var connectionUri = url.parse(MONGOHQ_URL);
 var dbName = connectionUri.pathname.replace(/^\//, '');
 
-console.log ('::::::::::::::::::::::::::::MONGOHQ_URL:::::::::::::::::::::::::::: ' +MONGOHQ_URL);
-console.log ('::::::::::::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
-console.log ('::::::::::::::::::::::::::::dbName:::::::::::::::::::::::::::: ' +dbName);
+console.log ('::::::::::1::::::::::::::::::MONGOHQ_URL:::::::::::::::::::::::::::: ' +MONGOHQ_URL);
+console.log ('::::::::::1::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
+console.log ('::::::::::1::::::::::::::::::dbName:::::::::::::::::::::::::::: ' +dbName);
  
 db.Db.connect(MONGOHQ_URL, function(error, client) {
   if (error) throw error;
