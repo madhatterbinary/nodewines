@@ -16,8 +16,8 @@ process.env.MONGOHQ_URL ||
 'mongodb://localhost/HelloMongoose';
 
 
-var server = new Server('localhost', theport, {auto_reconnect: true});
-db = new Db('winecellerdb', server);
+// var server = new Server('localhost', theport, {auto_reconnect: true});
+// db = new Db('winecellerdb', server);
 
 
 
