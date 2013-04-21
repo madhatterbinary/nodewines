@@ -1,10 +1,10 @@
- var mongo = require('mongodb');
-// //console.log (':::::::::::::::::::::::::::uuuuuuuuuuuuuu::::::::::::::::::::::::::::Succeeded connected to: ');
- var Server = mongo.Server,
-       Db = mongo.Db,
-       BSON = mongo.BSONPure;
+//  var mongo = require('mongodb');
+// // //console.log (':::::::::::::::::::::::::::uuuuuuuuuuuuuu::::::::::::::::::::::::::::Succeeded connected to: ');
+//  var Server = mongo.Server,
+//        Db = mongo.Db,
+//        BSON = mongo.BSONPure;
 
-var server = new Server('localhost', 27017, {auto_reconnect: true});
+// var server = new Server('localhost', 27017, {auto_reconnect: true});
 var db = require('mongodb');
 var url = require('url');
 var log = console.log;
