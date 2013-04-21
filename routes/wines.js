@@ -93,7 +93,7 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
     if(error) throw error;
  
     // output all collection names
-    log("Collectionsssssssssssnamesssssssssssssssssss" + names);
+    log("Collectionsssssssssssnamesssssssssssssssssss" + this);
     log("===========");
     var lastCollection = null;
     names.forEach(function(colData){
@@ -117,16 +117,10 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
         if(error) throw error;
  
         docs.forEach(function(doc){
-          
-        //     doc.find().toArray(function(err, items) {
-        //    log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
-        // });
+
+            log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
+
         });
-        db.collection('wines', function(err, collection) {
-                collection.find().toArray(function(err, items) {
-                    log("::::::::::::::::::::::::::::items:::::::::::::::::::::::::::::: " + items);
-                });
-            });
         // close the connection
         client.close();
       });
