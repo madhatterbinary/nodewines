@@ -82,9 +82,9 @@ var MONGOHQ_URL="mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15
 var connectionUri = url.parse(MONGOHQ_URL);
 var dbName = connectionUri.pathname.replace(/^\//, '');
 
-console.log ('::::::::::1::::::::::::::::::MONGOHQ_URL:::::::::::::::::::::::::::: ' +MONGOHQ_URL);
-console.log ('::::::::::1::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
-console.log ('::::::::::1::::::::::::::::::dbName:::::::::::::::::::::::::::: ' +dbName);
+console.log ('::::::::::12::::::::::::::::::MONGOHQ_URL:::::::::::::::::::::::::::: ' +MONGOHQ_URL);
+console.log ('::::::::::12::::::::::::::::::connectionUri:::::::::::::::::::::::::::: ' +connectionUri);
+console.log ('::::::::::12::::::::::::::::::dbName:::::::::::::::::::::::::::: ' +dbName);
  
 db.Db.connect(MONGOHQ_URL, function(error, client) {
   if (error) throw error;
@@ -108,8 +108,13 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
                 log("\nDocuments in " + lastCollection);
                 var documents = collection.find({}, {limit:24});
     
-              log("::::::::::::::::::::::::::::documents::::1:::::::::::::::::::::::::: " + documents);
-             
+              log("::::::::::::::::::::::::::::documents::::end:::::::::::::::::::::::::: " + documents);
+                 collection.find().toArray(function(err, items) {
+                   
+                   log("::::::::::::::::::::::::::::WINE collection::::00:::::::::::::::::::::::::: " + items);
+
+                
+                 });
                 // output a count of all documents found
                 documents.count(function(error, count){
                   log("  " + count + " documents(s) found");
