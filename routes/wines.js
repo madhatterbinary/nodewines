@@ -106,7 +106,28 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
             var collection = new db.Collection(client, lastCollection);
 
                 log("\nDocuments in " + lastCollection);
-            log("::::::::::::::::::::::::::::collection::::1:::::::::::::::::::::::::: " + collection);
+                var documents = collection.find({}, {limit:24});
+    
+              log("::::::::::::::::::::::::::::documents::::1:::::::::::::::::::::::::: " + documents);
+             
+                // output a count of all documents found
+                documents.count(function(error, count){
+                  log("  " + count + " documents(s) found");
+                  log("====================");
+             
+                  // output the first 5 documents
+                  documents.toArray(function(error, docs) {
+                    if(error) throw error;
+             
+                    docs.forEach(function(doc){
+
+                        log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
+
+                    });
+                    // close the connection
+                    client.close();
+                  });
+                });
 
           };
         }); 
