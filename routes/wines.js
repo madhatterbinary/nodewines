@@ -118,9 +118,9 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
  
         docs.forEach(function(doc){
           
-            doc.find().toArray(function(err, items) {
-           log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
-        });
+        //     doc.find().toArray(function(err, items) {
+        //    log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
+        // });
         });
         db.collection('wines', function(err, collection) {
                 collection.find().toArray(function(err, items) {
