@@ -151,13 +151,13 @@ exports.findById = function(req, res) {
         });
 };
 
-exports.findAll = function(req, res) {
+exports.findAlll = function(req, res) {
 console.log('Retrieving wineeeeeee: ');
 
-        winecollection.find().toArray(function(err, items) {
-            console.log('Retrieving wine: ' + items);
-            res.send(items);
-        });
+        // winecollection.find().toArray(function(err, items) {
+        //     console.log('Retrieving wine: ' + items);
+        //     res.send(items);
+        // });
 };
 
 exports.addWine = function(req, res) {
