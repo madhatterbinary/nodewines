@@ -41,12 +41,15 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
              
                   // output the first 5 documents
                   documents.toArray(function(error, docs) {
-                    if(error) throw error;            
+                    if(error) throw error;
+             
                     docs.forEach(function(doc){
+
                         //log("::::::::::::::::::::::::::::docccccccccc:::::::::::::::::::::::::::::: " + doc);
+
                     });
                     // close the connection
-                    client.close();
+                   // client.close();
                   });
                 });
 
