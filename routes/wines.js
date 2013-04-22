@@ -1,6 +1,8 @@
 var db = require('mongodb');
 var url = require('url');
 var log = console.log;
+var mongo = require('mongodb');
+BSON = mongo.BSONPure;
 
 var winecollection;
 var MONGOHQ_URL="mongodb://madhatterbinary:lupen333@alex.mongohq.com:10047/app15083406";
@@ -41,7 +43,7 @@ exports.findById = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving wine: ' + id);
         winecollection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(item);
+            res.send(JSON.stringify(items));
         });
 };
 
