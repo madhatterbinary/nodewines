@@ -49,7 +49,7 @@ db.Db.connect(MONGOHQ_URL, function(error, client) {
 
                     });
                     // close the connection
-                   // client.close();
+                   client.close();
                   });
                 });
 
