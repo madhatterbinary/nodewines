@@ -43,7 +43,7 @@ exports.findById = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving wine: ' + id);
         winecollection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(JSON.stringify(items));
+            res.send(item);
         });
 };
 
